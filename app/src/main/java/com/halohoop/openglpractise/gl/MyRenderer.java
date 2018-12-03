@@ -23,6 +23,7 @@ import static android.opengl.GLES20.GL_TRIANGLES;
 import static android.opengl.GLES20.glClear;
 import static android.opengl.GLES20.glClearColor;
 import static android.opengl.GLES20.glDrawArrays;
+import static android.opengl.GLES20.glEnableVertexAttribArray;
 import static android.opengl.GLES20.glGetAttribLocation;
 import static android.opengl.GLES20.glGetUniformLocation;
 import static android.opengl.GLES20.glUniform4f;
@@ -51,7 +52,7 @@ public class MyRenderer implements GLSurfaceView.Renderer {
 
     @Override
     public void onSurfaceCreated(GL10 gl, EGLConfig config) {
-        glClearColor(0.0f,0.0f,0.0f,0.0f);
+        glClearColor(1.0f,0.0f,0.0f,0.0f);
 
         String vertexShaderSource = TextResourceReader.readTextFileFromResource(context, R.raw.simple_vertex_shader);
         String fragmentShaderSource = TextResourceReader.readTextFileFromResource(context, R.raw.simple_fragment_shader);
@@ -60,19 +61,19 @@ public class MyRenderer implements GLSurfaceView.Renderer {
         int fragmentShader = ShaderHelper.compileFragmentShader(fragmentShaderSource);
         //两个三角形
         float[] tableVertices = {
-                0f,0f,
-                9f,14f,
-                0f,14f,
+                -0.5f,-0.5f,
+                0.5f,0.5f,
+                -0.5f,0.5f,
 
-                0f,0f,
-                9f,0f,
-                9f,14f,
+                -0.5f,-0.5f,
+                0.5f,-0.5f,
+                0.5f,0.5f,
 
-                0f, 7f,
-                9f, 7f,
+                -0.5f, 0f,
+                0.5f, 0f,
 
-                4.5f, 2f,
-                4.5f, 12f
+                0f, -0.25f,
+                0f, 0.25f,
         };
 
         //定义不被java 虚拟机管理的内存区域
@@ -98,6 +99,7 @@ public class MyRenderer implements GLSurfaceView.Renderer {
 
         vertexData.position(0);
         glVertexAttribPointer(aPostionLocation, POSITION_COMPONENT_COUNT, GL_FLOAT, false, 0, vertexData);
+        glEnableVertexAttribArray(aPostionLocation);
 
 
 
