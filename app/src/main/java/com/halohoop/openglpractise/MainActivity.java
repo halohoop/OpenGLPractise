@@ -14,7 +14,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         GLSurfaceView glSurfaceView = new GLSurfaceView(this);
-        glSurfaceView.setRenderer(new MyRenderer());
+        glSurfaceView.setRenderer(new MyRenderer(this));
 
 //        setContentView(R.layout.activity_main);
         setContentView(glSurfaceView);
